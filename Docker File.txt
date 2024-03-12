@@ -1,0 +1,17 @@
+# Use the official Streamlit Docker image as the base image
+FROM streamlit/streamlit:0.86.0
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the necessary files into the container
+COPY . /app
+
+# Install the required dependencies
+RUN pip install pandas joblib seaborn matplotlib scikit-learn
+
+# Expose the port where Streamlit runs the app
+EXPOSE 8501
+
+# Command to run the Streamlit app
+CMD ["streamlit", "run", "--server.port", "8501", "app.py"]
